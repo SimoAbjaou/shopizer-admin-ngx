@@ -1,0 +1,154 @@
+// themes - our custom or/and out of the box themes
+@import 'themes';
+@import '~angular-tree-component/dist/angular-tree-component.css';
+
+// framework component themes (styles tied to theme variables)
+@import '~@nebular/theme/styles/globals';
+@import '~@nebular/auth/styles/all';
+@import '~@nebular/bootstrap/styles/globals';
+// ...
+
+// global app font size
+@import './font-size';
+
+// loading progress bar theme
+@import './pace.theme';
+
+// regular style toast
+@import '~ngx-toastr/toastr';
+
+// install the framework and custom global styles
+@include nb-install() {
+
+  // framework global styles
+  @include nb-theme-global();
+  @include nb-auth-global();
+  @include nb-bootstrap-global();
+
+  // loading progress bar
+  @include ngx-pace-theme();
+}
+
+;
+
+// CUSTOM STYLES
+@import 'custom';
+
+
+
+// table css //
+
+page-table {
+  // nb-card {
+  //   background-color: transparent !important;
+  //   box-shadow: none !important;
+
+  nb-card-header {}
+
+  nb-card-body {
+    // padding: 0 !important;
+
+    .home-table {
+      table {
+        border-collapse: separate;
+        border-spacing: 0 15px;
+
+        thead {
+          background: transparent !important;
+
+          tr {
+            background: transparent !important;
+
+            th {
+              border: none !important;
+            }
+          }
+        }
+
+        tbody {
+          tr {
+            background: #fff !important;
+
+            &.ng2-smart-row.selected {
+              background: #fff !important;
+            }
+
+            &:hover {
+              background: #fff !important;
+            }
+
+            td {
+              height: auto !important;
+              border: none !important;
+              padding: 14px 1.25rem;
+
+              // &:first-child {
+              //   border-top-left-radius: 4px;
+              //   border-bottom-left-radius: 4px;
+              // }
+
+              // &:last-child {
+              //   border-top-right-radius: 4px;
+              //   border-bottom-right-radius: 4px;
+              // }
+              ng2-st-tbody-custom {
+                display: inline-flex;
+
+                a.ng2-smart-action {
+                  //   display: inline !important;
+                  border: none !important;
+
+                  .nb-edit {
+                    &:before {
+                      font-size: 24px !important;
+                    }
+                  }
+
+                  .nb-trash {
+                    &:before {
+                      font-size: 24px !important;
+                    }
+                  }
+
+                  .nb-info {
+                    &:before {
+                      // content: '\e908';
+                      color: #a4abb3;
+                      font-size: 16px;
+                      position: absolute;
+                      margin-left: 3px;
+                      margin-top: 3px;
+
+
+                      // position: absolute;
+                      // margin-left: 5px;
+                      // margin-top: 6px;
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  // }
+
+}
+
+.promotion {
+  .q-rule {
+    border: 0px !important;
+    background: white;
+  }
+
+  .q-remove-button {
+    border: 0px !important
+  }
+
+  .q-ruleset {
+    border: 0px !important;
+  }
+}

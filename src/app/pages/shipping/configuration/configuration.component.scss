@@ -1,0 +1,18 @@
+@import '../../../@theme/styles/themes';
+
+@include nb-install-component() {
+  nb-card {
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+.mode {
+  label {
+    display: block;
+    margin-bottom: 10px;
+  }
+
+  nb-radio {
+    display: inline-block;
+  }
+}

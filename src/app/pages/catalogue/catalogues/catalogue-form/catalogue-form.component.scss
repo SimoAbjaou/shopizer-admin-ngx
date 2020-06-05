@@ -1,0 +1,17 @@
+.wrapper {
+  display: flex;
+  flex-direction: row;
+}
+
+.side-right-menu {
+  color: black;
+  width: 400px;
+  background-color: white;
+  padding: 20px;
+  font-size: 16px;
+  min-height: 100px;
+}
+
+.border-top-right {
+  border-top: 3px solid #0088cc;
+}

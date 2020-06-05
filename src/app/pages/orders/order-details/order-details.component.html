@@ -1,0 +1,60 @@
+<nb-card size="small" [nbSpinner]="loading" nbSpinnerStatus="info" nbSpinnerSize="xlarge">
+  <nb-card-header>
+    Order ID 1 - ordered
+  </nb-card-header>
+  <nb-card-body>
+    <form [formGroup]='form' (ngSubmit)='onSubmit()'>
+
+      <div class="row">
+        <div class="col-12 col-sm-2 offset-md-1">
+          More options
+        </div>
+      </div>
+
+      <div class="row">
+
+        <div class="col-12 col-sm-4 offset-md-1">
+          <div class="column-title">
+            BILLING INFORMATION
+          </div>
+
+          <label for="inputPassword2" class="col-sm-3 col-form-label">Password</label>
+          <div class="col-sm-9">
+            <input type="password" class="form-control" id="inputPassword1" nbInput fullWidth fieldSize="small"
+                   formControlName='password' placeholder="Password" required>
+          </div>
+
+        </div>
+
+        <div class="col-12 col-sm-4">
+
+          <div class="column-title">
+            SHIPPING INFORMATION
+          </div>
+
+          <label for="inputPassword2" class="col-sm-3 col-form-label">Password</label>
+          <div class="col-sm-9">
+            <input type="password" class="form-control" id="inputPassword2" nbInput fullWidth fieldSize="small"
+                   formControlName='password' placeholder="Password" required>
+          </div>
+
+        </div>
+
+      </div>
+
+      <div class="row">
+        <div class="col-12 offset-md-1">
+          table
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-12 col-sm-12">
+          <button type="submit" class="btn btn-primary">Save</button>
+        </div>
+      </div>
+    </form>
+
+
+  </nb-card-body>
+</nb-card>

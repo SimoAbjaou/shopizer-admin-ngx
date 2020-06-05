@@ -1,0 +1,15 @@
+
+<nb-card size="small" class="page-card">
+    <div *ngIf="loading" class="loading-block" [nbSpinner]="loading" nbSpinnerSize="large" nbSpinnerStatus="primary"></div>
+    <nb-card-body *ngIf="!loading">
+    <div class="inner_pages_legacy">
+        <nb-card-header class="main_header">
+          <h1 class="page_title">{{ 'COMPONENTS.USER_DETAILS' | translate }}</h1>
+          <div class="content_spacing" style="height:60px;">
+           </div>
+        </nb-card-header>
+      </div>
+      <ngx-back-button></ngx-back-button>
+      <ngx-user-form *ngIf="user.id" [user]="user"></ngx-user-form>
+    </nb-card-body>
+</nb-card>

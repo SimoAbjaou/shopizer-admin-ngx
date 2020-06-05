@@ -1,0 +1,10 @@
+<ngx-back-button></ngx-back-button>
+<nb-card size="small" class="page-card">
+  <nb-card-header>
+    {{ 'COMPONENTS.BRAND' | translate}}
+  </nb-card-header>
+  <nb-card-body [nbSpinner]="loadingInfo" class="loading-block" nbSpinnerSize="large"
+                nbSpinnerStatus="primary">
+    <ngx-brand-form *ngIf="brand.id" [brand]="brand"></ngx-brand-form>
+  </nb-card-body>
+</nb-card>

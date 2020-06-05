@@ -1,0 +1,14 @@
+<nb-card size="small" class="page-card">
+  <nb-card-header>
+    {{ 'COMPONENTS.PRODUCTS' | translate }}
+  </nb-card-header>
+  <nb-card-body [nbSpinner]="loadingList" nbSpinnerSize="large" nbSpinnerStatus="primary">
+
+    <ng2-smart-table
+      [settings]="settings"
+      [source]="source"
+      (deleteConfirm)="deleteRecord($event)">
+    </ng2-smart-table>
+
+  </nb-card-body>
+</nb-card>

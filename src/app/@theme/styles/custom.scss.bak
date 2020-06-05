@@ -1,0 +1,125 @@
+@import './custom/overrided-styles';
+@import './custom/errors';
+
+.page-header {
+  font-size: 30px;
+  color: black;
+  padding-bottom: 10px
+}
+
+.page-content {
+  display: flex;
+  flex-direction: row;
+}
+
+.page-card {
+  border-top: 3px solid grey !important;
+}
+
+.page-body {
+  width: 100%;
+}
+
+// form styles
+.actions-button {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: 20px 15px;
+}
+
+.group-block {
+  display: flex;
+  flex-direction: column;
+}
+
+.loading-block {
+  width: 100%;
+  height: 100px;
+}
+// back to list button
+.back-button {
+  cursor: pointer;
+}
+
+// custom action column in table
+ng2-st-tbody-custom {
+  display: flex;
+  flex-direction: row;
+}
+
+// styles for selector with
+
+.selector-wrap {
+  display: flex;
+  flex-direction: row-reverse;
+  .selector-element {
+    width: 45%;
+    margin-bottom: 20px;
+  }
+}
+
+.pick-list {
+  padding: 20px;
+}
+
+// styles for breadcrubs
+.page-breadcrumbs {
+  font-size: 16px;
+  color: black;
+  padding: 10px 0;
+  font-weight: normal;
+  margin-bottom: 30px;
+}
+
+.fa-id-card, .home-color {
+  color: #0088cc;
+}
+
+.right-card-select {
+  width: 30%;
+  margin-bottom: 10px;
+  margin-left: 10px;
+}
+
+// description (multilanguage section) styles
+.description-block {
+  border: 2px solid #dadfe6;
+  padding: 20px;
+}
+
+// sidemenu
+.main-container {
+  z-index: 1000;
+}
+
+// styles for summernote
+.summernote {
+  max-width: 1145px !important;
+}
+
+//styles for pick-list
+.item-picklist {
+  display: flex;
+  div {
+    width: 50%;
+  }
+}
+
+// no items
+.no-items {
+  margin: 20px;
+}
+
+.nb-theme-corporate nb-checkbox:hover .customised-control-input:enabled + .customised-control-indicator, .nb-theme-corporate nb-checkbox .customised-control-input:focus:enabled + .customised-control-indicator {
+  border-color: #0059b3 !important;
+}
+.nb-theme-corporate nb-checkbox .customised-control-input:checked + .customised-control-indicator {
+  border-color: #0059b3 !important;
+}
+.nb-theme-corporate nb-checkbox .customised-control-input:checked + .customised-control-indicator {
+  background-color: transparent;
+  width: 1.25rem;
+  height: 1.25rem;
+  border: 2px solid #0059b3 !important;
+}
