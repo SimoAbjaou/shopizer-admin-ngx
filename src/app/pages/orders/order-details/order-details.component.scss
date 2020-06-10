@@ -1,11 +1,141 @@
-form div {
-  margin-bottom: 20px;
+.label-row {
+  margin-bottom: 17px;
+
+  label {
+    font-size: 20px;
+  }
 }
 
-.column-title {
-  margin-left: 15px;
-}
-// changing nb styles
-nb-card.small-card {
-  height: auto !important;
+.create_customer {
+  .nb-card {
+    .nb-card-body {
+      min-height: 545px;
+    }
+
+    .containerCenter {
+      display: flex;
+      justify-content: center;
+      padding: 20px 0;
+
+      .centerSec {
+        width: 60%;
+        margin: 0 auto;
+        justify-content: center;
+
+        .tabelSec {
+          width: 100%;
+          display: table;
+          margin: 0 auto;
+          width: 100%;
+          border: 1px solid #e0e0e0;
+          border-radius: 5px;
+          margin-bottom: 20px;
+
+          table {
+            width: 100%;
+            border: 1px solid #e0e0e0;
+            border-radius: 5px;
+            overflow: hidden;
+
+            thead {
+              th {
+                padding: 10px 6px;
+                font-weight: 600;
+                font-family: Roboto;
+              }
+
+              th:nth-child(1) {
+                width: 47%;
+              }
+
+              th:nth-child(2) {
+                width: 14%;
+              }
+
+              th:nth-child(3) {
+                width: 14%;
+              }
+
+              th:nth-child(4) {
+                width: 14%;
+              }
+            }
+
+            tbody {
+              tr:nth-child(odd) {
+                background-color: #f9f9f9;
+              }
+
+              td {
+                padding: 10px 6px;
+                font-family: Roboto;
+                text-transform: capitalize;
+              }
+
+              .boldTxt {
+                font-weight: 600;
+              }
+
+              .blueTxt {
+                color: #28bef8;
+                margin-left: 6px;
+              }
+            }
+          }
+        }
+
+        .statusSec {
+          width: 250px;
+          margin-bottom: 20px;
+
+          .simpleLabel {
+            font-family: roboto;
+          }
+
+          .terms {
+            margin-bottom: 15px;
+          }
+
+          .status {
+            margin-top: 15px;
+          }
+
+          .boldTxt {
+            font-family: roboto;
+            font-weight: 700;
+            color: #000;
+          }
+        }
+
+        label {
+          display: block;
+        }
+
+        .historySec {
+          margin-bottom: 15px;
+
+          .contentTxt {
+            width: 80%;
+            padding-left: 15%;
+
+            p {
+              font-family: roboto !important;
+              margin-bottom: 2px;
+            }
+          }
+        }
+
+        .btnSec {
+          .txtArea {
+            border: 1px solid #e0e0e0;
+            border-radius: 3px;
+          }
+
+          .lastBtn {
+            float: right;
+          }
+        }
+      }
+    }
+  }
 }

@@ -6,10 +6,11 @@
         <button type="button" nbButton status="warning">Cancle</button>
       </div>
       <div class="content_spacing">
-        <button type="button" nbButton status="success">Save</button>
+        <button type="button" nbButton class="success_button">Save</button>
       </div>
     </nb-card-header>
-    <div [nbSpinner]="loadingList" nbSpinnerSize="large" nbSpinnerStatus="primary">
+    <div [nbSpinner]="
+          loadingList" nbSpinnerSize="large" nbSpinnerStatus="primary">
       <div class="custom_scroll" malihu-scrollbar [scrollbarOptions]="scrollbarOptions">
         <div class="row">
           <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -27,8 +28,8 @@
                   <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                     <div class="form-group">
                       <label class="label">Option value name(en) <span>*</span></label>
-                      <input type="text" class="form-control" id="first_name" placeholder="Option name(en)"
-                        name="firstName" required>
+                      <input type="text" class="form-control" id="first_name" placeholder="Option name(en)" name="firstName"
+                        required>
                     </div>
                   </div>
                 </div>
@@ -36,8 +37,8 @@
                   <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                     <div class="form-group">
                       <label class="label">Option value name(fr) <span>*</span></label>
-                      <input type="text" class="form-control" id="first_name" placeholder="Option name(fr)"
-                        name="firstName" required>
+                      <input type="text" class="form-control" id="first_name" placeholder="Option name(fr)" name="firstName"
+                        required>
                     </div>
                   </div>
                   <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">

@@ -14,8 +14,7 @@
         <button type="button" nbButton status="warning">Cancle</button>
       </div>
       <div class="content_spacing">
-        <button type="button" nbButton status="success" [disabled]="!customerForm.form.valid"
-          (click)="onAddCustomer()">{{buttonText}}</button>
+        <button type="button" nbButton class="success_button" [disabled]="!customerForm.form.valid" (click)="onAddCustomer()">{{buttonText}}</button>
       </div>
     </nb-card-header>
 
@@ -32,15 +31,15 @@
                   <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                     <div class="form-group">
                       <label class="label">First Name <span>*</span></label>
-                      <input type="text" class="form-control" id="first_name" placeholder="First Name"
-                        [(ngModel)]="billing.firstName" name="firstName" required #firstName="ngModel">
+                      <input type="text" class="form-control" id="first_name" placeholder="First Name" [(ngModel)]="billing.firstName"
+                        name="firstName" required #firstName="ngModel">
                     </div>
                   </div>
                   <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                     <div class="form-group">
                       <label class="label">Last Name <span>*</span></label>
-                      <input type="text" class="form-control" id="last_name" placeholder="Last Name"
-                        [(ngModel)]="billing.lastName" name="lastName" required #lastName="ngModel">
+                      <input type="text" class="form-control" id="last_name" placeholder="Last Name" [(ngModel)]="billing.lastName"
+                        name="lastName" required #lastName="ngModel">
                     </div>
                   </div>
                 </div>
@@ -49,8 +48,8 @@
                   <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                     <div class="form-group">
                       <label class="label">User Name</label>
-                      <input type="text" class="form-control" id="user_name" placeholder="User Name"
-                        [(ngModel)]="info.userName" name="userName" #userName="ngModel">
+                      <input type="text" class="form-control" id="user_name" placeholder="User Name" [(ngModel)]="info.userName"
+                        name="userName" #userName="ngModel">
                     </div>
                   </div>
                   <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
@@ -74,8 +73,8 @@
                   <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                     <div class="form-group">
                       <label class="label">Billing City <span>*</span></label>
-                      <input type="text" class="form-control" id="billing_city" placeholder="Billing City"
-                        [(ngModel)]="billing.city" name="city" required #city="ngModel">
+                      <input type="text" class="form-control" id="billing_city" placeholder="Billing City" [(ngModel)]="billing.city"
+                        name="city" required #city="ngModel">
                     </div>
                   </div>
                 </div>
@@ -101,15 +100,15 @@
                   <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                     <div class="form-group">
                       <label class="label">Phone Number <span>*</span></label>
-                      <input type="text" class="form-control" id="billing_phone" placeholder="Phone Number"
-                        [(ngModel)]="billing.phone" name="phone" required #phone="ngModel" minlength=10 maxlength=13>
+                      <input type="text" class="form-control" id="billing_phone" placeholder="Phone Number" [(ngModel)]="billing.phone"
+                        name="phone" required #phone="ngModel" minlength=10 maxlength=13>
                     </div>
                   </div>
                   <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                     <div class="form-group">
                       <label class="label">Default language</label>
-                      <nb-select placeholder="Language" outline shape="rectangle" [(ngModel)]="info.language"
-                        name="language" [selected]="'en'">
+                      <nb-select placeholder="Language" outline shape="rectangle" [(ngModel)]="info.language" name="language"
+                        [selected]="'en'">
                         <nb-option *ngFor="let lan of languages" [value]="lan.code">{{ lan.name }}</nb-option>
                       </nb-select>
                     </div>
@@ -121,7 +120,8 @@
                     <div class="form-group">
                       <label class="label">Billing Country <span>*</span></label>
                       <nb-select *ngIf="billingCountry.length > 0" placeholder="Select Country" outline shape="rectangle"
-                        [(ngModel)]="billing.country" name="country" (selectedChange)="onBillingChange($event)" required>
+                        [(ngModel)]="billing.country" name="country" (selectedChange)="onBillingChange($event)"
+                        required>
                         <nb-option *ngFor="let country of billingCountry" [value]="country.code">{{ country.name }}
                         </nb-option>
                       </nb-select>
@@ -130,8 +130,8 @@
                   <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                     <div class="form-group" *ngIf="billingStateData.length > 0">
                       <label class="label">Billing State / Province <span>*</span></label>
-                      <nb-select placeholder="Select State" outline shape="rectangle" [(ngModel)]="billing.zone"
-                        name="zone" required>
+                      <nb-select placeholder="Select State" outline shape="rectangle" [(ngModel)]="billing.zone" name="zone"
+                        required>
                         <nb-option *ngFor="let state of billingStateData" [value]="state.code">{{ state.name }}
                         </nb-option>
                       </nb-select>
@@ -151,15 +151,15 @@
                   <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                     <div class="form-group">
                       <label for="exampleInputPassword1" class="label">First Name</label>
-                      <input type="text" class="form-control" id="first_name" placeholder="First Name"
-                        [(ngModel)]="shipping.firstName" name="shipping.firstName" #firstName="ngModel">
+                      <input type="text" class="form-control" id="first_name" placeholder="First Name" [(ngModel)]="shipping.firstName"
+                        name="shipping.firstName" #firstName="ngModel">
                     </div>
                   </div>
                   <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                     <div class="form-group">
                       <label for="exampleInputPassword1" class="label">Last Name</label>
-                      <input type="text" class="form-control" id="last_name" placeholder="Last Name"
-                        [(ngModel)]="shipping.lastName" name="shipping.lastName" #lastName="ngModel">
+                      <input type="text" class="form-control" id="last_name" placeholder="Last Name" [(ngModel)]="shipping.lastName"
+                        name="shipping.lastName" #lastName="ngModel">
                     </div>
                   </div>
                 </div>
@@ -200,18 +200,16 @@
                     <div class="form-group">
                       <label class="label">Shipping Country</label>
                       <nb-select *ngIf="shippingCountry.length > 0" placeholder="Select Country" outline shape="rectangle"
-                        (selectedChange)="onShippingChange($event)" [(ngModel)]="shipping.country"
-                        name="shipping.country">
+                        (selectedChange)="onShippingChange($event)" [(ngModel)]="shipping.country" name="shipping.country">
                         <nb-option *ngFor="let country of shippingCountry" [value]="country.code">{{
-                  country.name }}</nb-option>
+                          country.name }}</nb-option>
                       </nb-select>
                     </div>
                   </div>
                   <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                     <div class="form-group" *ngIf="shippingStateData.length > 0">
                       <label class="label">Shipping State / Province</label>
-                      <nb-select placeholder="Select State" outline shape="rectangle" [(ngModel)]="shipping.zone"
-                        name="shipping.zone">
+                      <nb-select placeholder="Select State" outline shape="rectangle" [(ngModel)]="shipping.zone" name="shipping.zone">
                         <nb-option *ngFor="let state of shippingStateData" [value]="state.code">{{ state.name }}
                         </nb-option>
                       </nb-select>

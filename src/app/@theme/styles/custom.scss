@@ -401,11 +401,11 @@ nb-menu {
     }
 
     .content_spacing_empty {
-      height:60px;
+      height: 60px;
     }
 
   }
-}  
+}
 
 .inner_pages {
   position: relative;
@@ -448,6 +448,10 @@ nb-menu {
       padding: 12px 20px 12px 20px !important;
       border: 0 !important;
       margin-top: 20px;
+
+      .success_button {
+        background-color: #0059b3 !important;
+      }
     }
 
     [nbButton].btn-outline.btn-primary {
@@ -751,7 +755,7 @@ nb-menu {
 
 /** category hierarchy **/
 .node-content-wrapper {
- font-size:20px !important;
+  font-size: 20px !important;
 }
 
 .pointer {

@@ -174,14 +174,14 @@ export class CategoriesListComponent implements OnInit {
       case 'remove':
         this.dialogService.open(ShowcaseDialogComponent, {})
           .onClose.subscribe(res => {
-          if (res) {
-            this.categoryService.deleteCategory(event.data.id)
-              .subscribe(data => {
-                this.toastr.success(this.translate.instant('CATEGORY_FORM.CATEGORY_REMOVED'));
-                this.getList();
-              });
-          }
-        });
+            if (res) {
+              this.categoryService.deleteCategory(event.data.id)
+                .subscribe(data => {
+                  this.toastr.success(this.translate.instant('CATEGORY_FORM.CATEGORY_REMOVED'));
+                  this.getList();
+                });
+            }
+          });
     }
   }
 
@@ -224,7 +224,7 @@ export class CategoriesListComponent implements OnInit {
 
   onSearch(query: string = '') {
 
-    if(query.length == 0) {
+    if (query.length == 0) {
       this.searchValue = null;
       return;
     }

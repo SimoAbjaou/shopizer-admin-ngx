@@ -19,13 +19,13 @@ const IsSuperadmin = () => {
 
 const IsAdmin = () => {
   //return (JSON.parse(localStorage.getItem('roles'))).isAdmin;
-  if(
+  if (
     (JSON.parse(localStorage.getItem('roles'))).isSuperadmin ||
     (JSON.parse(localStorage.getItem('roles'))).isAdmin ||
     (JSON.parse(localStorage.getItem('roles'))).isAdminRetail
   ) {
     return true;
-  } else  {
+  } else {
     return false;
   }
 };
@@ -52,25 +52,25 @@ const IsCustomer = () => {
 
 const isCategoryManagementVisible = () => {
 
-  if('MARKETPLACE' === environment.mode) {
-    if(IsSuperadmin()) {
+  if ('MARKETPLACE' === environment.mode) {
+    if (IsSuperadmin()) {
       return true;
     }
   } else {//B2C
-    if(IsAdminRetail()) {
+    if (IsAdminRetail()) {
       return true;
     }
- }
+  }
 
 }
 
 const IsAdminRetail = () => {
-  if(
+  if (
     (JSON.parse(localStorage.getItem('roles'))).isSuperadmin ||
     (JSON.parse(localStorage.getItem('roles'))).isAdminRetail
   ) {
     return true;
-  } else  {
+  } else {
     return false;
   }
 };
@@ -211,7 +211,7 @@ export const MENU_ITEMS: MenuItem[] = [
              link: '/pages/catalogue/products/manage-inventory',
              hidden: false
            },
-           **/  
+           **/
         ],
       },
       {
@@ -349,18 +349,18 @@ export const MENU_ITEMS: MenuItem[] = [
     icon: 'fas fa-truck',
     children: [
       {
-        title: 'Configuration',
-        key: 'sideNav.configuration',
+        title: 'COMPONENTS.CONFIGURATION',
+        key: 'COMPONENTS.CONFIGURATION',
         link: '/pages/shipping/config',
       },
       {
-        title: 'Methods',
-        key: 'sideNav.methods',
+        title: 'COMPONENTS.METHODS',
+        key: 'COMPONENTS.METHODS',
         link: '/pages/content/promotion',
       },
       {
-        title: 'Origin',
-        key: 'sideNav.origin',
+        title: 'COMPONENTS.ORIGIN',
+        key: 'COMPONENTS.ORIGIN',
         link: '/pages/shipping/config',
       },
       // {
@@ -381,28 +381,28 @@ export const MENU_ITEMS: MenuItem[] = [
   //   link: '',
   // },
   {
-    title: 'Customers',
-    key: 'sideNav.customers',
+    title: 'COMPONENTS.CUSTOMERS',
+    key: 'COMPONENTS.CUSTOMERS',
     icon: 'fas fa-users',
     children: [
       {
-        title: 'Customer List',
-        key: 'sideNav.customerList',
+        title: 'COMPONENTS.CUSTOMER_LIST',
+        key: 'COMPONENTS.CUSTOMER_LIST',
         link: '/pages/customer/list',
       },
       {
-        title: 'Options',
-        key: 'sideNav.options',
+        title: 'COMPONENTS.OPTIONS',
+        key: 'COMPONENTS.OPTIONS',
         link: '/pages/customer/option/list',
       },
       {
-        title: 'Options Value',
-        key: 'sideNav.optionValue',
+        title: 'COMPONENTS.OPTIONS_VALUE',
+        key: 'COMPONENTS.OPTIONS_VALUE',
         link: '/pages/customer/value/list',
       },
       {
-        title: 'Manage Options',
-        key: 'sideNav.manageoptions',
+        title: 'COMPONENTS.MANAGE_OPTIONS',
+        key: 'COMPONENTS.MANAGE_OPTIONS',
         link: '/pages/customer/manage/list',
       }
     ]
