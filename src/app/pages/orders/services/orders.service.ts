@@ -44,6 +44,18 @@ export class OrdersService {
     return this.crudService.post('/v1/private/orders/' + orderID + '/history', param);
   }
   updateOrder(orderID, param): Observable<any> {
-    return this.crudService.post('/v1/private/orders/' + orderID + '/customer', param);
+    return this.crudService.patch('/v1/private/orders/' + orderID + '/customer', param);
+  }
+  getNextTransaction(orderID): Observable<any> {
+    return this.crudService.get('/v1/private/orders/' + orderID + '/payment/nextTransaction');
+  }
+  refundOrder(orderID): Observable<any> {
+    return this.crudService.post('/v1/private/orders/' + orderID + '/refund', {});
+  }
+  captureOrder(orderID): Observable<any> {
+    return this.crudService.post('/v1/private/orders/' + orderID + '/capture', {});
+  }
+  getTransactions(orderID): Observable<any> {
+    return this.crudService.get('/v1/private/orders/' + orderID + '/payment/transactions');
   }
 }

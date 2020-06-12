@@ -1,0 +1,52 @@
+<nb-card>
+  <div class="transaction-box">
+
+    <span class="titleBar">
+      <span></span>
+      <span class="title_text">Transaction List</span>
+      <button class="close" type="button" (click)="cancel()"></button>
+    </span>
+    <div class="tabelSec">
+      <table cellpadding="0" cellspacing="0" id="print-section">
+        <thead>
+          <tr class="heading">
+            <th>
+              ID
+            </th>
+            <th>
+              Date
+            </th>
+            <th>
+              Type
+            </th>
+            <th>
+              Amount
+            </th>
+            <th>
+              Details
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="item" *ngFor="let transaction of transactionData">
+            <td>
+              {{transaction.id}}
+            </td>
+            <td>
+              {{transaction.transactionDate}}
+            </td>
+            <td>
+              {{transaction.transactionType}}
+            </td>
+            <td>
+              {{transaction.amount}}
+            </td>
+            <td style="word-break: break-all;">
+              {{transaction.details}}
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</nb-card>

@@ -1,34 +1,44 @@
 <div class="inner_pages create_customer">
-  <form #orderForm="ngForm" role="form">
-    <nb-card-header class="main_header">
-      <h1 class="page_title">{{title}} - {{orderDetailsData.orderStatus}}</h1>
-      <div class="content_spacing">
-        <div>
-          <nb-select placeholder="{{'ORDER_FORM.MORE_OPTIONS' | translate}}" outline shape="rectangle" (selectedChange)="showDialog($event)">
-            <nb-option value="1">{{ 'ORDER_FORM.LIST_TRANSACTIONS' | translate}}</nb-option>
-            <nb-option value="2">{{ 'ORDER_FORM.VIEW_INVOICE' | translate}} </nb-option>
-          </nb-select>
-        </div>
-      </div>
 
-      <div class="content_spacing">
-        <button type="button" nbButton status="warning">{{ 'ORDER_FORM.APPLY_REFUND' | translate}}</button>
+  <nb-card-header class="main_header">
+    <h1 class="page_title">{{title}} - {{orderDetailsData.orderStatus}}</h1>
+    <div class="content_spacing">
+      <div>
+        <nb-select placeholder="{{'ORDER_FORM.MORE_OPTIONS' | translate}}" outline shape="rectangle" (selectedChange)="showDialog($event)">
+          <nb-option value="1">{{ 'ORDER_FORM.TRANSACTIONS_LIST' | translate}}</nb-option>
+          <nb-option value="2">{{ 'ORDER_FORM.VIEW_INVOICE' | translate}} </nb-option>
+          <nb-option value="3">{{ 'ORDER_FORM.HISTORY_LIST' | translate}}</nb-option>
+        </nb-select>
       </div>
-      <div class="content_spacing">
-        <button type="button" nbButton status="warning">{{ 'ORDER_FORM.CANCLE' | translate}}</button>
-      </div>
-      <div class="content_spacing">
-        <button type="button" nbButton class="success_button" [disabled]="!orderForm.form.valid" (click)="updateOrder()">{{'ORDER_FORM.UPDATE_ORDER'
-          | translate }}</button>
-      </div>
-      <div class="content_spacing">
-        <button type="button" nbButton status="warning">{{'ORDER_FORM.NEW_ORDER_STATUS' | translate}}</button>
-      </div>
-    </nb-card-header>
+    </div>
 
-    <div class="" [nbSpinner]="loadingList" nbSpinnerSize="large" nbSpinnerStatus="primary">
+    <div class="content_spacing">
+      <button type="button" nbButton class="refund_button" *ngIf="transactionType == 'REFUND'" (click)="onClickRefund()">{{
+        'ORDER_FORM.REFUND'
+        |
+        translate}}</button>
+    </div>
+    <div class="content_spacing">
+      <button type="button" nbButton class="capture_button" *ngIf="transactionType == 'CAPTURE'" (click)="onClickCapture()">{{
+        'ORDER_FORM.CAPTURE' |
+        translate}}</button>
+    </div>
+    <div class="content_spacing">
+      <button type="button" nbButton status="warning" (click)="goToback()">{{ 'ORDER_FORM.CANCLE' | translate}}</button>
+    </div>
+    <div class="content_spacing">
+      <button type="button" nbButton class="success_button" [disabled]="!orderForm.form.valid" (click)="updateOrder()">{{'ORDER_FORM.UPDATE_ORDER'
+        | translate }}</button>
+    </div>
+    <div class="content_spacing">
+      <button type="button" nbButton status="warning">{{'ORDER_FORM.NEW_ORDER_STATUS' | translate}}</button>
+    </div>
+  </nb-card-header>
 
-      <div class="custom_scroll" malihu-scrollbar [scrollbarOptions]="scrollbarOptions">
+  <div class="" [nbSpinner]="loadingList" nbSpinnerSize="large" nbSpinnerStatus="primary">
+
+    <div class="custom_scroll" malihu-scrollbar [scrollbarOptions]="scrollbarOptions">
+      <form #orderForm="ngForm" role="form">
         <div class="row">
           <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
             <nb-card class="nb-card inline-form-card">
@@ -139,7 +149,7 @@
 
           <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
             <nb-card class="nb-card inline-form-card">
-              <nb-card-header class="nb-card-header">{{'ORDER_FORM.NEW_ORDER_STATUS' | translate}}</nb-card-header>
+              <nb-card-header class="nb-card-header">{{'ORDER_FORM.SHIPPING_INFO' | translate}}</nb-card-header>
               <nb-card-body class="nb-card-body">
                 <div class="row">
                   <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
@@ -218,83 +228,63 @@
             </nb-card>
           </div>
         </div>
-
-      </div>
-
-    </div>
-  </form>
-  <div class="row">
-    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-      <nb-card class="nb-card inline-form-card">
-        <div class="containerCenter">
-          <div class="centerSec">
-            <div class="tabelSec">
-              <table border="1">
-                <thead>
-                  <tr>
-                    <th>{{'ORDER_FORM.ITEM' | translate}}</th>
-                    <th>{{'ORDER_FORM.QUANTITY' | translate}}</th>
-                    <th>{{'ORDER_FORM.PRICE' | translate}}</th>
-                    <th>{{'ORDER_FORM.TOTAL' | translate}}</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr *ngFor="let product of orderDetailsData.products">
-                    <td><span>{{product.productName}} -</span><span class="blueTxt">{{product.sku}}</span></td>
-                    <td>{{product.orderedQuantity}}</td>
-                    <td class="boldTxt">{{product.price}}</td>
-                    <td class="boldTxt">{{product.subTotal}}</td>
-                  </tr>
-                  <tr *ngFor="let total of orderDetailsData.totals">
-                    <td></td>
-                    <td colspan="2">{{total.module}}</td>
-                    <td class="boldTxt">US${{total.value}}</td>
-                  </tr>
-                  <!-- <tr>
-                    <td></td>
-                    <td colspan="2">{{'ORDER_FORM.TOTAL' | translate}}</td>
-                    <td class="boldTxt">789.99</td>
-                  </tr> -->
-                </tbody>
-              </table>
-            </div>
-            <div class="statusSec">
-              <label class="terms">{{'ORDER_FORM.TERMS_CONDITIONS' | translate}}: <span class="boldTxt">{{orderDetailsData.customerAgreed}}</span></label>
-              <label>{{'ORDER_FORM.PAYMENT_MODE' | translate}}</label>
-              <label class="boldTxt">{{orderDetailsData.paymentType}} - {{orderDetailsData.paymentModule}}</label>
-              <label class="status">{{'ORDER_FORM.SELECT_STATUS' | translate}}</label>
-              <nb-select *ngIf="billingCountry.length > 0" placeholder="{{'ORDER_FORM.SELECT_STATUS' | translate}}"
-                outline shape="rectangle" [(ngModel)]="statusFields.status" name="status" required>
-                <nb-option *ngFor="let status of statusList" [value]="status.id">{{ status.name }}
-                </nb-option>
-              </nb-select>
-            </div>
-            <div class="btnSec">
-              <label>{{'ORDER_FORM.STATUS_COMMENT' | translate}}</label>
-              <textarea id="" name="" rows="6" cols="30" class="txtArea" [(ngModel)]="statusFields.comments" name="comments"
-                required></textarea>
-              <button type="button" (click)="updateHistory()" nbButton class="success_button lastBtn" [disabled]="statusFields.comments == '' || statusFields.status == ''">{{'ORDER_FORM.UPDATE_STATUS'
-                | translate}}</button>
-            </div>
-            <div class="historySec">
-              <label>{{'ORDER_FORM.HISTORY_LIST' | translate}}</label>
-              <div class="contentTxt">
-                <p>June 8, 2020 11:11:38 PM - Your order was shipped,Your order was shipped, Here is the macking
-                  number 123456</p>
-                <p>June 8, 2020 11:50:38 PM - As requested we refunded your order</p>
+      </form>
+      <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+          <nb-card class="nb-card inline-form-card">
+            <div class="containerCenter">
+              <div class="centerSec">
+                <div class="tabelSec">
+                  <table border="1">
+                    <thead>
+                      <tr>
+                        <th>{{'ORDER_FORM.ITEM' | translate}}</th>
+                        <th>{{'ORDER_FORM.QUANTITY' | translate}}</th>
+                        <th>{{'ORDER_FORM.PRICE' | translate}}</th>
+                        <th>{{'ORDER_FORM.TOTAL' | translate}}</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let product of orderDetailsData.products">
+                        <td><span>{{product.productName}} -</span><span class="blueTxt">{{product.sku}}</span></td>
+                        <td>{{product.orderedQuantity}}</td>
+                        <td class="boldTxt">{{product.price}}</td>
+                        <td class="boldTxt">{{product.subTotal}}</td>
+                      </tr>
+                      <tr *ngFor="let total of orderDetailsData.totals">
+                        <td></td>
+                        <td colspan="2">{{total.module}}</td>
+                        <td class="boldTxt">US${{total.value}}</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <div class="statusSec">
+                  <label class="terms">{{'ORDER_FORM.TERMS_CONDITIONS' | translate}}: <span class="boldTxt">{{orderDetailsData.customerAgreed}}</span></label>
+                  <label>{{'ORDER_FORM.PAYMENT_MODE' | translate}}</label>
+                  <label class="boldTxt">{{orderDetailsData.paymentType}} - {{orderDetailsData.paymentModule}}</label>
+                  <label class="status">{{'ORDER_FORM.SELECT_STATUS' | translate}}</label>
+                  <nb-select *ngIf="billingCountry.length > 0" placeholder="{{'ORDER_FORM.SELECT_STATUS' | translate}}"
+                    outline shape="rectangle" [(ngModel)]="statusFields.status" name="status" required>
+                    <nb-option *ngFor="let status of statusList" [value]="status.id">{{ status.name }}
+                    </nb-option>
+                  </nb-select>
+                </div>
+                <div class="btnSec">
+                  <label>{{'ORDER_FORM.STATUS_COMMENT' | translate}}</label>
+                  <textarea id="" name="" rows="6" cols="30" class="txtArea" [(ngModel)]="statusFields.comments" name="comments"
+                    required></textarea>
+                  <button type="button" (click)="updateHistory()" nbButton class="success_button lastBtn" [disabled]="statusFields.comments == '' || statusFields.status == ''">{{'ORDER_FORM.UPDATE_STATUS'
+                    | translate}}</button>
+                </div>
               </div>
             </div>
-
-
-          </div>
-
+          </nb-card>
         </div>
-
-
-      </nb-card>
-
-
-
+      </div>
     </div>
+
   </div>
+
+
 </div>
