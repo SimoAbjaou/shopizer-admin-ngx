@@ -73,6 +73,7 @@
     "ionicons": "2.0.1",
     "jquery": "^3.4.1",
     "leaflet": "1.2.0",
+    "libphonenumber-js": "^1.7.52",
     "lodash-es": "^4.17.15",
     "moment": "^2.24.0",
     "nebular-icons": "1.1.0",
