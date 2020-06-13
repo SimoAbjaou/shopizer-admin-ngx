@@ -6,11 +6,11 @@ import { ImageBrowserComponent } from './@theme/components/image-browser/image-b
 
 const routes: Routes = [
   { path: 'auth', loadChildren: 'app/pages/auth/auth.module#AuthModule' },
-  { path: 'errorPage', component:  ErrorComponent },
+  { path: 'errorPage', component: ErrorComponent },
   {
     path: 'pages',
     loadChildren: 'app/pages/pages.module#PagesModule',
-    canActivate: [ AuthGuard ]
+    canActivate: [AuthGuard]
   },
   { path: 'gallery', component: ImageBrowserComponent },
   { path: '', redirectTo: 'pages', pathMatch: 'full' },

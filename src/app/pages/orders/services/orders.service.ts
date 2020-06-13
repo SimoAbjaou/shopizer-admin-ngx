@@ -15,12 +15,47 @@ export class OrdersService {
   ) {
   }
 
-  getOrders(): Observable<any> {
-    const params = {
-      'count': '25',
-      'start': '0'
-    };
-    return this.crudService.get('/v1/admin/orders', params);
+  getOrders(params): Observable<any> {
+    // const params = {
+    //   'count': '50',
+    //   'start': '0'
+    // };
+    return this.crudService.get('/v1/private/orders', params);
   }
-
+  getOrderDetails(orderID): Observable<any> {
+    return this.crudService.get('/v1/private/orders/' + orderID);
+  }
+  getLanguage() {
+    return localStorage.getItem('lang') || environment.client.language.default;
+  }
+  getCountry(): Observable<any> {
+    return this.crudService.get('/v1/country')
+  }
+  getBillingZone(value): Observable<any> {
+    return this.crudService.get('/v1/zones?code=' + value)
+  }
+  getShippingZone(value): Observable<any> {
+    return this.crudService.get('/v1/zones?code=' + value)
+  }
+  getHistory(orderID): Observable<any> {
+    return this.crudService.get('/v1/private/orders/' + orderID + '/history')
+  }
+  addHistory(orderID, param): Observable<any> {
+    return this.crudService.post('/v1/private/orders/' + orderID + '/history', param);
+  }
+  updateOrder(orderID, param): Observable<any> {
+    return this.crudService.patch('/v1/private/orders/' + orderID + '/customer', param);
+  }
+  getNextTransaction(orderID): Observable<any> {
+    return this.crudService.get('/v1/private/orders/' + orderID + '/payment/nextTransaction');
+  }
+  refundOrder(orderID): Observable<any> {
+    return this.crudService.post('/v1/private/orders/' + orderID + '/refund', {});
+  }
+  captureOrder(orderID): Observable<any> {
+    return this.crudService.post('/v1/private/orders/' + orderID + '/capture', {});
+  }
+  getTransactions(orderID): Observable<any> {
+    return this.crudService.get('/v1/private/orders/' + orderID + '/payment/transactions');
+  }
 }

@@ -17,7 +17,7 @@ const routes: Routes = [{
     },
     {
       path: 'orders',
-      canActivate: [OrdersGuard],
+      // canActivate: [OrdersGuard],
       loadChildren: 'app/pages/orders/orders.module#OrdersModule'
     },
     {
