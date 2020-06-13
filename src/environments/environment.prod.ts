@@ -5,8 +5,7 @@ export const environment = {
   production: true,
   googleApiKey: '',
   mode: 'MARKETPLACE',
-  //apiUrl: 'http://aws-demo.shopizer.com:8080/api',
-  apiUrl: 'http://localhost:8080/api',
+  apiUrl: 'http://15.223.64.6/api',
   client: {
     language: {
       default: 'en',
