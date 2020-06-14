@@ -1,6 +1,6 @@
 
 npm install
-npm run build --prod --output-path=./dist/out
+npm run build
 
 
 [![Build Status](https://travis-ci.org/akveo/ngx-admin.svg?branch=master)](https://travis-ci.org/akveo/ngx-admin)

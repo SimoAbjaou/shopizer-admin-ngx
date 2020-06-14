@@ -17,6 +17,7 @@ import { DropdownModule } from 'primeng/dropdown';
 import { BackButtonComponent } from './components/back-button/back-button.component';
 import { TreeModule, TreeTableModule } from 'primeng/primeng';
 import { ValidateNumberDirective } from './validation/validate-number.directive';
+import { PasswordPromptComponent } from './components/password-prompt/password-prompt';
 
 
 @NgModule({
@@ -26,6 +27,7 @@ import { ValidateNumberDirective } from './validation/validate-number.directive'
     NotFoundComponent,
     ImageUploadingComponent,
     ShowcaseDialogComponent,
+    PasswordPromptComponent,
     PaginatorComponent,
     BackButtonComponent,
     ValidateNumberDirective
