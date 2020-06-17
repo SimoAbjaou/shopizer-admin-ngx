@@ -46,7 +46,9 @@ export class OrderDetailsComponent implements OnInit {
     address: '',
     city: '',
     zone: '',
+    tempZone: '',
     country: '',
+    tempCountry: '',
     postalCode: '',
 
   }
@@ -57,14 +59,15 @@ export class OrderDetailsComponent implements OnInit {
     address: '',
     city: '',
     zone: '',
+    tempZone: '',
     country: '',
+    tempCountry: '',
     postalCode: '',
     phone: ''
   }
   transactionType: string = ''
   orderID: any;
   defaultCountry: any;
-  title: any = ''
   buttonText: any = 'Update Order'
   languages: Array<any> = [{ 'code': 'en', 'name': 'English' }, { 'code': 'fr', 'name': 'French' }]
   constructor(private ordersService: OrdersService, private toastr: ToastrService,
@@ -81,8 +84,15 @@ export class OrderDetailsComponent implements OnInit {
         this.loadingList = false;
         // console.log(data);
         this.orderDetailsData = data;
-        this.onBillingChange(data.billing.country)
-
+        this.onBillingChange(data.billing.country, 0)
+        setTimeout(() => {
+          this.billingCountry.map((a) => {
+            if (a.value == data.billing.country) {
+              this.billing.tempCountry = a.label
+            }
+          });
+          this.onChangeStateBilling(data.billing.zone);
+        }, 1500);
 
         this.info.emailAddress = data.customer.emailAddress;
         this.info.datePurchased = data.datePurchased;
@@ -90,7 +100,15 @@ export class OrderDetailsComponent implements OnInit {
         // this.info.userName = data.userName;
         this.billing = data.billing;
         if (data.delivery) {
-          this.onShippingChange(data.delivery.country)
+          this.onShippingChange(data.delivery.country, 0)
+          setTimeout(() => {
+            this.shippingCountry.map((a) => {
+              if (a.value == data.delivery.country) {
+                this.shipping.tempCountry = a.label
+              }
+            });
+            this.onChangeStateShipping(data.delivery.zone);
+          }, 1500);
           this.shipping = data.delivery;
         }
 
@@ -102,7 +120,6 @@ export class OrderDetailsComponent implements OnInit {
     if (localStorage.getItem('orderID')) {
       this.orderID = localStorage.getItem('orderID')
       this.getOrderDetails();
-      this.title = "Order ID " + this.orderID
     }
     this.getHistory();
     this.getNextTransaction();
@@ -138,27 +155,86 @@ export class OrderDetailsComponent implements OnInit {
   getCountry() {
     this.ordersService.getCountry()
       .subscribe(data => {
-        this.shippingCountry = data;
-        this.billingCountry = data;
+        data.map((a) => {
+          this.billingCountry.push({ value: a.code, label: a.name })
+          this.shippingCountry.push({ value: a.code, label: a.name })
+        })
+        // this.shippingCountry = data;
+        // this.billingCountry = data;
       }, error => {
 
       });
   }
-  onBillingChange(value) {
+  onBillingChange(value, flag) {
+    // console.log(e);
+    this.billingCountry.map((a) => {
+      if (a.value == value) {
+        this.billing.tempCountry = a.label
+      }
+    });
     this.ordersService.getBillingZone(value)
       .subscribe(data => {
-        this.billingStateData = data;
+        if (data.length > 0) {
+          data.map((b) => {
+            this.billingStateData.push({ value: b.code, label: b.name })
+          });
+          // this.billingStateData = data;
+          if (flag == 1) {
+            this.billing.zone = data[0].code;
+            this.billing.tempZone = data[0].name
+          }
+        } else {
+          this.billingStateData = data;
+          this.billing.zone = '';
+          this.billing.tempZone = '';
+        }
       }, error => {
 
       });
   }
-  onShippingChange(value) {
+  onChangeStateBilling(value) {
+    // console.log(value);
+    // console.log(this.billingStateData);
+    this.billingStateData.map((a) => {
+      if (a.value == value) {
+        this.billing.tempZone = a.label
+        // console.log(a.label)
+      }
+    });
+  }
+  onShippingChange(value, flag) {
+    this.shippingCountry.map((a) => {
+      if (a.value == value) {
+        this.shipping.tempCountry = a.label
+      }
+    });
     this.ordersService.getShippingZone(value)
       .subscribe(data => {
-        this.shippingStateData = data;
+        if (data.length > 0) {
+          data.map((b) => {
+            this.shippingStateData.push({ value: b.code, label: b.name })
+          });
+
+          // this.shippingStateData = data;
+          if (flag == 1) {
+            this.shipping.zone = data[0].code
+            this.shipping.tempZone = data[0].name
+          }
+        } else {
+          this.shippingStateData = data;
+          this.shipping.zone = '';
+          this.shipping.tempZone = '';
+        }
       }, error => {
 
       });
+  }
+  onChangeStateShipping(value) {
+    this.shippingStateData.map((a) => {
+      if (a.value == value) {
+        this.shipping.tempZone = a.label
+      }
+    });
   }
   updateHistory() {
     this.loadingList = true;

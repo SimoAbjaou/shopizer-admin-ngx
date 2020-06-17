@@ -4,7 +4,7 @@
 
     <span class="titleBar">
       <span></span>
-      <span class="title_text">Invoice</span>
+      <span class="title_text">{{'ORDER_FORM.INVOICE' | translate}}</span>
       <button class="close" type="button" (click)="cancel()"></button>
     </span>
 
@@ -18,8 +18,8 @@
               </td>
 
               <td>
-                Invoice #: {{orderData.id}}<br>
-                Created: {{orderData.datePurchased}}<br>
+                {{'ORDER_FORM.INVOICE' | translate}} #: {{orderData.id}}<br>
+                {{'PRODUCT.CREATION_DATE' | translate}}: {{orderData.datePurchased}}<br>
                 <!-- Due: February 1, 2015 -->
               </td>
             </tr>
@@ -50,11 +50,11 @@
 
       <tr class="heading">
         <td>
-          Payment Type
+          {{'ORDER.PAYMENT_TYPE' | translate}}
         </td>
         <td></td>
         <td>
-          Payment Module
+          {{'ORDER.PAYMENT_MODULE' | translate}}
         </td>
       </tr>
 
@@ -70,13 +70,13 @@
 
       <tr class="heading">
         <td>
-          Item
+          {{'ORDER_FORM.ITEM' | translate}}
         </td>
         <td style="text-align:center">
-          Quantity
+          {{'ORDER_FORM.QUANTITY' | translate}}
         </td>
         <td>
-          Price
+          {{'ORDER_FORM.PRICE' | translate}}
         </td>
       </tr>
 
@@ -94,7 +94,7 @@
 
       <tr class="total">
         <td>
-          <button type="button" class="success_button" (click)="print()">Print Invoice
+          <button type="button" class="success_button" (click)="print()">{{'ORDER_FORM.PRINT_INVOICE' |translate}}
           </button>
         </td>
         <td></td>

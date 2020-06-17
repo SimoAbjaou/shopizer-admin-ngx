@@ -25,9 +25,6 @@ export class OrdersService {
   getOrderDetails(orderID): Observable<any> {
     return this.crudService.get('/v1/private/orders/' + orderID);
   }
-  getLanguage() {
-    return localStorage.getItem('lang') || environment.client.language.default;
-  }
   getCountry(): Observable<any> {
     return this.crudService.get('/v1/country')
   }
