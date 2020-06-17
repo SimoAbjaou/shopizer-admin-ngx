@@ -82,8 +82,8 @@ export class StoreService {
     return this.crudService.post(`/v1/private/store/${code}/marketing`, body);
   }
 
-  addStoreLogo(file: any): Observable<any> {
-    const code = this.storageService.getMerchant();
+  addStoreLogo(code: string,file: any): Observable<any> {
+    //const code = this.storageService.getMerchant();
     const uploadData = new FormData();
     uploadData.append('file', file, file.name);
     return this.crudService.post(`/v1/private/store/${code}/marketing/logo`, uploadData);

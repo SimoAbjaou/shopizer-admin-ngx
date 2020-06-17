@@ -1,10 +1,3 @@
-<!--<ngx-back-button></ngx-back-button>-->
-<!--<nb-card size="small" class="page-card">-->
-  <!--
-  <nb-card-header>
-    {{ 'STORE_BRANDING.STORE_LOGO' | translate}}
-  </nb-card-header>
--->
 
 <nb-card size="small" class="page-card">
     <div *ngIf="loading" class="loading-block" [nbSpinner]="loading" nbSpinnerSize="large" nbSpinnerStatus="primary"></div>
@@ -25,24 +18,6 @@
         </nb-card-header>
       
 
-  <!--
-  <div *ngIf="loading" class="loading-block"
-       [nbSpinner]="loading"
-       nbSpinnerSize="large"
-       nbSpinnerStatus="primary">
-  </div>
-
-  <nb-card-body *ngIf="!loading">
-  -->
-      <!--
-      <div style="margin-top:10px;">
-
-          <nb-select [(selected)]="selectedItem" outline shape="rectangle" class="right-card-select" style="margin-left: 0px !important;">
-            <nb-option *ngFor="let item of sidemenuLinks" [value]="item.id" (click)="route(item.link)">{{ item.title }}</nb-option>
-          </nb-select>
-
-      </div>
-    -->
     <form [formGroup]="imageUpload">
       <div class="wrapper" (click)='imageInput.click()' (drop)="drop($event)" (dragover)="allowDrop($event)">
         <div id="imageDrop" #imageDrop>

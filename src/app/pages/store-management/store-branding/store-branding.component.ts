@@ -72,12 +72,12 @@ export class StoreBrandingComponent implements OnInit {
     )
     .subscribe(([st]) => {
       this.store = st;
+      this.storeCode = this.store.code;
 
       this.logo = this.store.logo;
       if (this.logo) {
         this.showRemoveButton = true;
       }
-      //this.fillForm(res.socialNetworks);
       
       this.loading = false;
     });
@@ -146,7 +146,7 @@ export class StoreBrandingComponent implements OnInit {
 
   saveLogo() {
     this.loadingButton = true;
-    this.storeService.addStoreLogo(this.logoFile)
+    this.storeService.addStoreLogo(this.storeCode, this.logoFile)
       .subscribe(res => {
         this.toastr.success(this.translate.instant('STORE_BRANDING.LOGO_SAVED'));
         this.loadingButton = false;
