@@ -20,6 +20,7 @@ export class ConfigurationComponent {
   code = "code";
   label = "label";
   loadingList = false;
+  expedition:boolean = false;
   public scrollbarOptions = { axis: 'y', theme: 'minimal-dark' };
   constructor(
     private crudService: CrudService,

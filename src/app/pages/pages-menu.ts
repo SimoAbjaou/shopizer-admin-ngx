@@ -19,13 +19,13 @@ const IsSuperadmin = () => {
 
 const IsAdmin = () => {
   //return (JSON.parse(localStorage.getItem('roles'))).isAdmin;
-  if(
+  if (
     (JSON.parse(localStorage.getItem('roles'))).isSuperadmin ||
     (JSON.parse(localStorage.getItem('roles'))).isAdmin ||
     (JSON.parse(localStorage.getItem('roles'))).isAdminRetail
   ) {
     return true;
-  } else  {
+  } else {
     return false;
   }
 };
@@ -52,25 +52,25 @@ const IsCustomer = () => {
 
 const isCategoryManagementVisible = () => {
 
-  if('MARKETPLACE' === environment.mode) {
-    if(IsSuperadmin()) {
+  if ('MARKETPLACE' === environment.mode) {
+    if (IsSuperadmin()) {
       return true;
     }
   } else {//B2C
-    if(IsAdminRetail()) {
+    if (IsAdminRetail()) {
       return true;
     }
- }
+  }
 
 }
 
 const IsAdminRetail = () => {
-  if(
+  if (
     (JSON.parse(localStorage.getItem('roles'))).isSuperadmin ||
     (JSON.parse(localStorage.getItem('roles'))).isAdminRetail
   ) {
     return true;
-  } else  {
+  } else {
     return false;
   }
 };
@@ -211,7 +211,7 @@ export const MENU_ITEMS: MenuItem[] = [
              link: '/pages/catalogue/products/manage-inventory',
              hidden: false
            },
-           **/  
+           **/
         ],
       },
       {
@@ -361,7 +361,7 @@ export const MENU_ITEMS: MenuItem[] = [
       {
         title: 'Origin',
         key: 'sideNav.origin',
-        link: '/pages/shipping/config',
+        link: '/pages/shipping/origin',
       },
       // {
       //   title: 'Options',
