@@ -20,11 +20,11 @@ export class ConfigurationComponent {
   code = "code";
   label = "label";
   loadingList = false;
-  expedition:boolean = false;
+  expedition: boolean = false;
   public scrollbarOptions = { axis: 'y', theme: 'minimal-dark' };
   constructor(
     private crudService: CrudService,
-  ){
+  ) {
     this.getCountry()
   }
 
@@ -57,7 +57,7 @@ export class ConfigurationComponent {
         this.loadingList = false;
         let value = [];
         data.forEach((item) => {
-          value.push({ 'code': item.id, 'label': item.name })
+          value.push({ 'code': item.id, 'label': item.name, 'countryCode': item.code })
         });
         this.leftAreaItems = value
         // this.source = data;

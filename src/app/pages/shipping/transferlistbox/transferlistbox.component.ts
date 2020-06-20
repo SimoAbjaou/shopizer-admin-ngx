@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { stringify } from '@angular/compiler/src/util';
+import { CrudService } from '../../shared/services/crud.service';
 
 @Component({
   selector: 'app-transferlistbox',
@@ -19,6 +20,7 @@ export class TransferlistboxComponent implements OnInit {
   toggleButtonClicked = new EventEmitter<Object>();
   leftAreaMap: Map<string, any>;
   rightAreaMap: Map<string, any> = new Map<string, any>();
+  shipToCountries: string[] = [];
 
   /**
    *alerts component params 
@@ -32,16 +34,44 @@ export class TransferlistboxComponent implements OnInit {
      *end of alerts component params 
      */
   showDelete: boolean = true;
-  constructor() {
+  constructor(private crudService: CrudService) {
   }
 
   /**
    * 
    */
   ngOnInit() {
-    this.generateLocalData();
+    this.fetchShipToCountries();
+    //this.generateLocalData();
 
 
+  }
+  // Method to fetch selected shipToCountries
+  fetchShipToCountries() {
+    this.crudService.get('/v1/private/expedition?store=DEFAULT')
+      .subscribe(data => {
+        this.shipToCountries = data.shipToCountry;
+        console.log(this.shipToCountries);
+        this.generateLocalData();
+      });
+
+  }
+  //save shipToCountries
+  saveShipToCountries() {
+    let selectedCountries = Array.from(this.rightAreaMap.values());
+    selectedCountries.forEach(item => {
+      this.shipToCountries.push(item.countryCode);
+    });
+    let payload = {
+      "iternationalShipping": true,
+      "shipToCountry": this.shipToCountries
+    }
+    this.crudService.post('/v1/private/expedition?store=DEFAULT', payload).subscribe(res => {
+      if (res.status == 200) {
+        alert("Data Saved Successfully");
+      }
+    });
+    this.shipToCountries = [];
   }
 
   /**
@@ -52,10 +82,29 @@ export class TransferlistboxComponent implements OnInit {
     if (this.label == null) { throw Error("label attribute is required") };
     if (this.leftAreaList == null) { throw Error("leftAreaList attribute is required") };
     this.leftAreaMap = new Map<string, any>();
-    this.leftAreaList.forEach((item) => {
-      item.selected = false;
-      this.leftAreaMap.set(item[this.code], item);
-    });
+    if (this.shipToCountries.length > 0) {
+      let availableCountries: any[] = this.leftAreaList;
+
+      this.leftAreaList = availableCountries.filter(o => !this.shipToCountries.find((countryCode) => o.countryCode === countryCode));
+      this.rightAreaList = availableCountries.filter(o => this.shipToCountries.some((countryCode) => o.countryCode === countryCode));
+      //filling available countries
+      this.leftAreaList.forEach((item) => {
+        this.leftAreaMap.set(item[this.code], item);
+      });
+      //filling selected countries
+      this.rightAreaList.forEach((item) => {
+        this.rightAreaMap.set(item[this.code], item);
+      });
+      console.log(this.leftAreaList);
+      console.log(this.rightAreaList);
+      this.shipToCountries = [];
+    } else {
+      this.leftAreaList.forEach((item) => {
+        console.log(item);
+        item.selected = false;
+        this.leftAreaMap.set(item[this.code], item);
+      });
+    }
   }
   /**
    * Sets the items into map 

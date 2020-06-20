@@ -57,7 +57,7 @@ export class OriginComponent implements OnInit {
         this.shipOriginForm.value.postalCode);
       this.crudService.post('/v1/private/origin?store=DEFAULT', this.shippingOriginReq).subscribe(res => {
         if (res.status == 200) {
-          //saved
+          alert("Data Saved Successfully");
         }
       });
     }
