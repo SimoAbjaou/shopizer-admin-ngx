@@ -349,7 +349,7 @@ export const MENU_ITEMS: MenuItem[] = [
     icon: 'fas fa-truck',
     children: [
       {
-        title: 'Configuration',
+        title: 'SHIPPING.EXPEDITION',
         key: 'sideNav.configuration',
         link: '/pages/shipping/config',
       },

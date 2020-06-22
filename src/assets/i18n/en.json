@@ -315,6 +315,7 @@
   },
   "SHIPPING": {
     "CONFIGURATION": "Configuration",
+    "EXPEDITION": "Expedition",
     "ORIGIN": "Shipping Origin",
     "PACKAGING": "Packaging configuration",
     "RULES": "Shipping rules",
