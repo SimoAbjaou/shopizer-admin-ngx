@@ -350,7 +350,7 @@ export const MENU_ITEMS: MenuItem[] = [
     children: [
       {
         title: 'SHIPPING.EXPEDITION',
-        key: 'COMPONENTS.CONFIGURATION',
+        key: 'COMPONENTS.EXPEDITION',
         link: '/pages/shipping/config',
       },
       {
