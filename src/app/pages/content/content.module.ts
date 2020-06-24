@@ -8,7 +8,7 @@ import { CKEditorModule } from 'ng2-ckeditor';
 import { NgxDropzoneModule } from 'ngx-dropzone';
 import { LightboxModule } from 'ngx-lightbox';
 import { MalihuScrollbarModule } from 'ngx-malihu-scrollbar';
-
+import { FileManagerModule } from 'ng6-file-man';
 @NgModule({
   declarations: [
     ...routedComponents
@@ -17,6 +17,7 @@ import { MalihuScrollbarModule } from 'ngx-malihu-scrollbar';
     ContentRoutingModule,
     SharedModule,
     ngfModule,
+    FileManagerModule,
     QueryBuilderModule,
     NbDialogModule.forChild(),
     CKEditorModule,

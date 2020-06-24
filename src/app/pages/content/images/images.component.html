@@ -1,20 +1,20 @@
 <div class="inner_pages">
   <h1 class="page_title_marg">Manage Image</h1>
 
-  <ngx-dropzone class="custom_dropzone_click" (change)="handleUpload($event)">
-    <ngx-dropzone-label>Drop files here or click to upload.</ngx-dropzone-label>
-    <!-- <ngx-dropzone-preview *ngFor="let f of files" [removable]="true">
+  <!-- <ngx-dropzone class="custom_dropzone_click" (change)="handleUpload($event)">
+    <ngx-dropzone-label>Drop files here or click to upload.</ngx-dropzone-label> -->
+  <!-- <ngx-dropzone-preview *ngFor="let f of files" [removable]="true">
       <ngx-dropzone-label>{{ f.name }} ({{ f.type }})</ngx-dropzone-label>
     </ngx-dropzone-preview> -->
-  </ngx-dropzone>
+  <!-- </ngx-dropzone> -->
 
   <div class="row" [nbSpinner]="loadingList" nbSpinnerSize="large" nbSpinnerStatus="primary">
     <div class="col-md-12 col-sm-12 col-xs-12 col-lg-12">
       <ul class="gallery_listing_main">
-        <ngx-dropzone class="custom_dropzone_full" (change)="handleUpload($event)">
-          <!-- <ngx-dropzone-preview *ngFor="let f of files" [removable]="true">
-            <ngx-dropzone-label>{{ f.name }} ({{ f.type }})</ngx-dropzone-label>
-          </ngx-dropzone-preview> -->
+        <fm-file-manager [tree]="tree" [language]="appLanguage" [isPopup]="isPopup"></fm-file-manager>
+
+        <!-- <ngx-dropzone class="custom_dropzone_full" (change)="handleUpload($event)">
+          
         </ngx-dropzone>
         <li *ngFor="let images of uploadedFiles;let i=index">
           <div class="gallery_listing_box">
@@ -32,10 +32,6 @@
               <img src="{{images.path}}{{images.name}}" class="banner-image">
             </div>
           </div>
-        </li>
-        <!-- <li>
-
-          <!-- <upload [onUpload]="handleUpload" [multi]="true"></upload> --
         </li> -->
       </ul>
     </div>

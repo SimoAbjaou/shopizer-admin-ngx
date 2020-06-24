@@ -10,7 +10,7 @@ import { TranslateService } from '@ngx-translate/core';
   styleUrls: ['./categories-hierarchy.component.scss']
 })
 export class CategoriesHierarchyComponent implements OnInit {
-  @ViewChild('tree') tree;
+  @ViewChild('tree', { static: false }) tree;
   nodes = [];
   options = {
     allowDrag: (node) => {

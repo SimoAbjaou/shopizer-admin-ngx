@@ -8,7 +8,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { HTTP_INTERCEPTORS, HttpClient, HttpClientModule } from '@angular/common/http';
-import { ErrorHandler} from '@angular/core';
+import { ErrorHandler } from '@angular/core';
 
 import { CoreModule } from './@core/core.module';
 import { AppComponent } from './app.component';
@@ -24,7 +24,7 @@ import { GlobalHttpInterceptorService } from './pages/shared/interceptors/global
 import { ToastrModule } from 'ngx-toastr';
 import { ImageBrowserComponent } from './@theme/components/image-browser/image-browser.component';
 import { GlobalErrorHandler } from './pages/shared/classes/error-handler/global-error-handler';
-
+import { FileManagerModule } from 'ng6-file-man';
 @NgModule({
   declarations: [AppComponent, ImageBrowserComponent],
   imports: [
@@ -47,20 +47,21 @@ import { GlobalErrorHandler } from './pages/shared/classes/error-handler/global-
         deps: [HttpClient]
       }
     }),
-    ToastrModule.forRoot()
+    ToastrModule.forRoot(),
+    FileManagerModule
   ],
   bootstrap: [AppComponent],
   providers: [
-    {provide: APP_BASE_HREF, useValue: '/'},
+    { provide: APP_BASE_HREF, useValue: '/' },
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,
       multi: true,
     },
-    {
-      provide: ErrorHandler,
-      useClass: GlobalErrorHandler,
-    },
+    // {
+    //   provide: ErrorHandler,
+    //   useClass: GlobalErrorHandler,
+    // },
     {
       provide: HTTP_INTERCEPTORS,
       useClass: GlobalHttpInterceptorService,

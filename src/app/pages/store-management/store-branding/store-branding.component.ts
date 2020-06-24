@@ -40,7 +40,7 @@ export class StoreBrandingComponent implements OnInit {
     }
   ];
 
-  @ViewChild('imageDrop') imageDrop;
+  @ViewChild('imageDrop', { static: false }) imageDrop;
   acceptedImageTypes = { 'image/png': true, 'image/jpeg': true, 'image/gif': true };
   imageUpload = this.formBuilder.group({
     imageInput: ['', Validators.required]
@@ -65,22 +65,22 @@ export class StoreBrandingComponent implements OnInit {
   ngOnInit() {
     this.loading = true;
     const code = this.activatedRoute.snapshot.paramMap.get('code');
-    
+
     forkJoin(
       //this.storeService.getBrandingDetails(code),
       this.storeService.getStore(code)
     )
-    .subscribe(([st]) => {
-      this.store = st;
+      .subscribe(([st]) => {
+        this.store = st;
 
-      this.logo = this.store.logo;
-      if (this.logo) {
-        this.showRemoveButton = true;
-      }
-      //this.fillForm(res.socialNetworks);
-      
-      this.loading = false;
-    });
+        this.logo = this.store.logo;
+        if (this.logo) {
+          this.showRemoveButton = true;
+        }
+        //this.fillForm(res.socialNetworks);
+
+        this.loading = false;
+      });
 
   }
 
@@ -116,7 +116,7 @@ export class StoreBrandingComponent implements OnInit {
       image.height = 200;
       image.style.display = 'block';
       image.style.margin = '0 auto';
-      image.className  = 'appendedImage';
+      image.className = 'appendedImage';
       this.imageDrop.nativeElement.appendChild(image);
       if (this.imageUpload.controls.imageInput.value == null) {
         const input = this.imageUpload.controls.imageInput as any;

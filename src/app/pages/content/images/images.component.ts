@@ -7,6 +7,7 @@ import { ShowcaseDialogComponent } from '../../shared/components/showcase-dialog
 import { Lightbox } from 'ngx-lightbox';
 import { MalihuScrollbarService } from 'ngx-malihu-scrollbar';
 
+import { TreeModel, NodeInterface, ConfigInterface } from 'ng6-file-man';
 @Component({
   selector: 'images-table',
   templateUrl: './images.component.html',
@@ -16,6 +17,10 @@ export class ImagesComponent {
   uploadedFiles: any[] = [];
   _albums: any[] = [];
   loadingList = false;
+  isPopup = false;
+  tree: TreeModel;
+  // node: NodeInterface;
+  appLanguage = 'en';
   constructor(
     private crudService: CrudService,
     public router: Router,
@@ -24,6 +29,24 @@ export class ImagesComponent {
     private _lightbox: Lightbox,
     private mScrollbarService: MalihuScrollbarService,
   ) {
+    const treeConfig: ConfigInterface = {
+      baseURL: 'http://localhost:8080/',
+      api: {
+        listFile: 'api/list',
+        uploadFile: 'api/upload',
+        downloadFile: 'api/download',
+        deleteFile: 'api/remove',
+        createFolder: 'api/directory',
+        renameFile: 'api/rename',
+        searchFiles: 'api/search'
+      },
+      options: {
+        allowFolderDownload: false,
+        showFilesInsideTree: true
+      }
+    };
+    this.tree = new TreeModel(treeConfig)
+    // this.node = this.tree.nodes;
     this.getImages()
   }
   getImages() {

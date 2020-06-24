@@ -13,6 +13,7 @@
     order: 0;
     flex-direction: row;
   }
+
   .right {
     order: 1;
     flex-direction: row-reverse;
@@ -34,8 +35,8 @@
     width: auto;
 
     .navigation {
-      @include nb-ltr(padding-right, nb-theme(padding));
-      @include nb-rtl(padding-left, nb-theme(padding));
+      @include nb-ltr(padding-right, 1.25rem);
+      @include nb-rtl(padding-left, 1.25rem);
       font-size: 2.5rem;
       text-decoration: none;
 
@@ -46,15 +47,15 @@
     }
 
     .logo {
-      padding: 0 nb-theme(padding);
+      padding: 0 1.25rem;
       font-size: 1.75rem;
-      font-weight: nb-theme(font-weight-bolder);
-      @include nb-ltr(border-left, 1px solid nb-theme(separator));
-      @include nb-rtl(border-right, 1px solid nb-theme(separator));
+      font-weight: 500;
+      @include nb-ltr(border-left, 1px solid nb-theme(divider-color));
+      @include nb-rtl(border-right, 1px solid nb-theme(divider-color));
       white-space: nowrap;
 
       span {
-        font-weight: nb-theme(font-weight-normal);
+        // font-weight: nb-theme(font-weight-normal);
       }
 
       img {
@@ -77,7 +78,7 @@
     }
 
     .header-container /deep/ ngx-theme-switcher .dropdown-toggle {
-      color: nb-theme(color-white);
+      color: #ffffff;
       background: transparent;
     }
   }
@@ -98,50 +99,52 @@
     }
   }
 
-  .toggle-settings /deep/ a {
-    display: block;
-    text-decoration: none;
-    line-height: 1;
+  // .toggle-settings /deep/ a {
+  //   display: block;
+  //   text-decoration: none;
+  //   line-height: 1;
 
-    i {
-      color: nb-theme(color-fg-highlight);
-      font-size: 2.25rem;
-      border-radius: 50%;
-      position: relative;
-      animation-name: pulse-light;
+  //   i {
+  //     color: nb-theme(color-fg-highlight);
+  //     font-size: 2.25rem;
+  //     border-radius: 50%;
+  //     position: relative;
+  //     animation-name: pulse-light;
 
-      &::after {
-        content: ' ';
-        // hack to be able to set border-radius
-        background-image: url('data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7');
-        border-radius: 50%;
-        pointer-events: none;
+  //     &::after {
+  //       content: ' ';
+  //       // hack to be able to set border-radius
+  //       background-image: url('data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7');
+  //       border-radius: 50%;
+  //       pointer-events: none;
 
-        position: absolute;
-        top: 52.3%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        width: 13%;
-        height: 13%;
+  //       position: absolute;
+  //       top: 52.3%;
+  //       left: 50%;
+  //       transform: translate(-50%, -50%);
+  //       width: 13%;
+  //       height: 13%;
 
-        animation: 3s linear infinite pulse;
+  //       animation: 3s linear infinite pulse;
 
-        @include nb-for-theme(default) {
-          animation-name: pulse-light;
-        }
-      }
-    }
-  }
+  //       @include nb-for-theme(default) {
+  //         animation-name: pulse-light;
+  //       }
+  //     }
+  //   }
+  // }
 
   @include keyframes(pulse) {
     0% {
-      box-shadow: 0 0 1px 0 rgba(nb-theme(color-fg-highlight), 0);
+      // box-shadow: 0 0 1px 0 rgba(nb-theme(color-fg-highlight), 0);
     }
+
     20% {
-      box-shadow: 0 0 3px 10px rgba(nb-theme(color-fg-highlight), 0.4);
+      // box-shadow: 0 0 3px 10px rgba(nb-theme(color-fg-highlight), 0.4);
     }
+
     100% {
-      box-shadow: 0 0 5px 20px rgba(nb-theme(color-fg-highlight), 0);
+      // box-shadow: 0 0 5px 20px rgba(nb-theme(color-fg-highlight), 0);
     }
   }
 
@@ -149,9 +152,11 @@
     0% {
       box-shadow: 0 0 1px 0 rgba(115, 255, 208, 0);
     }
+
     20% {
       box-shadow: 0 0 3px 10px rgba(115, 255, 208, 0.4);
     }
+
     100% {
       box-shadow: 0 0 5px 20px rgba(115, 255, 208, 0);
     }

@@ -13,7 +13,7 @@ import { TranslateService } from '@ngx-translate/core';
   styleUrls: ['./order-list.component.scss']
 })
 export class OrderListComponent implements OnInit {
-  @ViewChild('item') accordion;
+  @ViewChild('item', { static: false }) accordion;
   source: LocalDataSource = new LocalDataSource();
   loadingList = false;
   settings = {};

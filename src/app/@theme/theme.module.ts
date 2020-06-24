@@ -25,8 +25,6 @@ import {
   NbInputModule,
   NbAccordionModule,
   NbDatepickerModule,
-  NbDialogModule,
-  NbWindowModule,
   NbListModule,
   NbToastrModule,
   NbAlertModule,
@@ -35,7 +33,6 @@ import {
   NbSelectModule,
   NbChatModule,
   NbTooltipModule,
-  NbCalendarKitModule,
 } from '@nebular/theme';
 
 import { NbSecurityModule } from '@nebular/security';
@@ -44,11 +41,8 @@ import {
   FooterComponent,
   HeaderComponent,
   SearchInputComponent,
-  ThemeSettingsComponent,
-  SwitcherComponent,
-  LayoutDirectionSwitcherComponent,
+
   TinyMCEComponent,
-  ToggleSettingsButtonComponent,
 } from './components';
 import {
   CapitalizePipe,
@@ -58,10 +52,7 @@ import {
   NumberWithCommasPipe,
 } from './pipes';
 import {
-  OneColumnLayoutComponent,
   SampleLayoutComponent,
-  ThreeColumnsLayoutComponent,
-  TwoColumnsLayoutComponent,
 } from './layouts';
 import { DEFAULT_THEME } from './styles/theme.default';
 import { CORPORATE_THEME } from './styles/theme.corporate';
@@ -95,30 +86,23 @@ const NB_MODULES = [
   NbInputModule,
   NbAccordionModule,
   NbDatepickerModule,
-  NbDialogModule,
-  NbWindowModule,
+  // NbDialogModule,
+  // NbWindowModule,
   NbAlertModule,
   NbSpinnerModule,
   NbRadioModule,
   NbSelectModule,
   NbChatModule,
   NbTooltipModule,
-  NbCalendarKitModule,
+  // NbCalendarKitModule
 ];
 
 const COMPONENTS = [
-  SwitcherComponent,
-  LayoutDirectionSwitcherComponent,
   HeaderComponent,
   FooterComponent,
   SearchInputComponent,
-  ThemeSettingsComponent,
   TinyMCEComponent,
-  OneColumnLayoutComponent,
   SampleLayoutComponent,
-  ThreeColumnsLayoutComponent,
-  TwoColumnsLayoutComponent,
-  ToggleSettingsButtonComponent,
 ];
 
 const PIPES = [
@@ -134,13 +118,11 @@ const NB_THEME_PROVIDERS = [
     {
       name: 'corporate',
     },
-    [ DEFAULT_THEME, CORPORATE_THEME ],
+    [DEFAULT_THEME, CORPORATE_THEME],
   ).providers,
   ...NbSidebarModule.forRoot().providers,
   ...NbMenuModule.forRoot().providers,
   ...NbDatepickerModule.forRoot().providers,
-  ...NbDialogModule.forRoot().providers,
-  ...NbWindowModule.forRoot().providers,
   ...NbToastrModule.forRoot().providers,
   ...NbChatModule.forRoot({
     messageGoogleMapKey: 'AIzaSyA_wNuCzia92MAmdLRzmqitRGvCF7wCZPY',

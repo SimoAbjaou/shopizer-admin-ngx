@@ -10,6 +10,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./configuration.component.scss'],
 })
 export class ConfigurationComponent {
+  visible: any;
   leftAreaItems = [];
   rightAreaItems = null;
   leftAreaLabel = "Available";
@@ -23,7 +24,7 @@ export class ConfigurationComponent {
   public scrollbarOptions = { axis: 'y', theme: 'minimal-dark' };
   constructor(
     private crudService: CrudService,
-  ){
+  ) {
     this.getCountry()
   }
 

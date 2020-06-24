@@ -21,7 +21,7 @@ import { forkJoin } from 'rxjs';
 })
 export class StoreFormComponent implements OnInit {
   @Input() store: any;
-  @ViewChild('search')
+  @ViewChild('search', { static: false })
   searchElementRef: ElementRef;
   supportedLanguages = [];
   supportedLanguagesSelected = [];
@@ -69,19 +69,19 @@ export class StoreFormComponent implements OnInit {
     private toastr: ToastrService,
     private translate: TranslateService,
     private activatedRoute: ActivatedRoute,
-    private securityService : SecurityService
+    private securityService: SecurityService
   ) {
     this.establishmentType = window.location.hash.indexOf('retailer') !== -1 ? 'RETAILER' : 'STORE';
     this.merchant = localStorage.getItem('merchant');
     this.roles = JSON.parse(localStorage.getItem('roles'));
     this.loading = true;
     forkJoin(
-      this.configService.getListOfCountries(), 
+      this.configService.getListOfCountries(),
       this.configService.getListOfSupportedCurrency(),
-      this.configService.getWeightAndSizes(), 
-      this.storeService.getListOfStores({start: 0, length: 1500, retailers: true, store: this.merchant}),
+      this.configService.getWeightAndSizes(),
+      this.storeService.getListOfStores({ start: 0, length: 1500, retailers: true, store: this.merchant }),
       this.configService.getListOfSupportedLanguages())
-      .subscribe(([countries, currencies, measures, stores, languages ]) => {
+      .subscribe(([countries, currencies, measures, stores, languages]) => {
         this.countries = [...countries];
         this.supportedCurrency = [...currencies];
         this.weightList = [...measures.weights];
@@ -92,13 +92,13 @@ export class StoreFormComponent implements OnInit {
 
         this.form.controls['retailer'].disable();
         this.form.controls['retailerStore'].disable();
-        if(this.securityService.isSuperAdmin()) {
+        if (this.securityService.isSuperAdmin()) {
           this.form.controls['retailer'].enable();
           this.form.controls['retailerStore'].enable();
           this.isRetailerRole = true;
         }
 
-        if(this.roles.isAdminRetail) {
+        if (this.roles.isAdminRetail) {
           this.isRetailerRole = true;
         }
 
@@ -211,17 +211,17 @@ export class StoreFormComponent implements OnInit {
 
     console.log('Creating form 3 ');
     console.log('Store id' + this.store.id);
-    if (this.store && this.store.id >0) {
+    if (this.store && this.store.id > 0) {
       this.fillForm();
     }
-    
+
   }
 
   adjustForm() {
 
-    if(this.parent != null) {
+    if (this.parent != null) {
 
-      if(this.parent.retailer) {
+      if (this.parent.retailer) {
         this.isRetailer = true;
       }
 
@@ -239,14 +239,14 @@ export class StoreFormComponent implements OnInit {
       this.form.controls['address'].patchValue({ country: this.parent.address.country });
       this.countryIsSelected(this.parent.address.country);
       this.form.controls['address'].patchValue({ stateProvince: this.parent.address.stateProvince }, { disabled: false });
-      
+
 
       /** can't assign parent to root */
-      if(this.roles.isSuperadmin) {
+      if (this.roles.isSuperadmin) {
         this.form.controls['retailerStore'].disable();
       }
 
-      
+
     }
 
   }
@@ -255,8 +255,8 @@ export class StoreFormComponent implements OnInit {
 
     this.isRetailer = this.store.retailer;
     console.log('Fill form store ' + JSON.stringify(this.store));
-    if(this.store.parent && this.store.parent != null) {
-      this.parentRetailer = this.store.parent ;
+    if (this.store.parent && this.store.parent != null) {
+      this.parentRetailer = this.store.parent;
     }
 
     console.log('No parents');
@@ -280,7 +280,7 @@ export class StoreFormComponent implements OnInit {
       inBusinessSince: new Date(this.store.inBusinessSince),
       useCache: this.store.useCache,
       retailer: this.isRetailer,
-      retailerStore: this.parentRetailer != null ? this.parentRetailer.code:'',
+      retailerStore: this.parentRetailer != null ? this.parentRetailer.code : '',
     });
     this.form.controls['address'].patchValue({ searchControl: '' });
     this.form.controls['address'].patchValue({ stateProvince: this.store.address.stateProvince }, { disabled: false });
@@ -350,10 +350,10 @@ export class StoreFormComponent implements OnInit {
     this.form.controls['address'].patchValue({ country: this.form.value.address.country });
     this.form.controls['address'].patchValue({ stateProvince: this.form.value.address.stateProvince });
     const storeObj = this.form.value;
-    
+
     //creating a child
     if (!this.store.id) {
-      if(!this.roles.isSuperadmin && this.isRetailer) {
+      if (!this.roles.isSuperadmin && this.isRetailer) {
         storeObj.retailer = false;
         storeObj.retailerStore = this.merchant;
       }
@@ -433,26 +433,26 @@ export class StoreFormComponent implements OnInit {
     const invalid = [];
     const controls = this.form.controls;
     for (const name in controls) {
-        if (controls[name].invalid) {
-            invalid.push(name);
-        }
+      if (controls[name].invalid) {
+        invalid.push(name);
+      }
     }
     //console.log('Invalid fields ' + invalid);
   }
 
   userHasSupportedLanguage(language) {
-    if (!this.store || !this.store.supportedLanguages) 
+    if (!this.store || !this.store.supportedLanguages)
       return false;
     return this.store.supportedLanguages.find((l: any) => l.code === language.code);
   }
 
   showRetailers(event) {
-    if ( !event.target.checked ) {
+    if (!event.target.checked) {
       this.isRetailer = false;
       this.form.controls['retailerStore'].enable();
     } else {
       this.isRetailer = true;
-      this.form.controls['retailerStore'].disable() 
+      this.form.controls['retailerStore'].disable()
     }
     //event ? this.form.controls['retailerStore'].disable() : this.form.controls['retailerStore'].enable();
   }

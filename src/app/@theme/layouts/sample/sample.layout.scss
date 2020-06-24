@@ -15,12 +15,14 @@
     overflow: hidden;
     @include nb-ltr(transform, translate3d(100%, 0, 0));
     @include nb-rtl(transform, translate3d(-100%, 0, 0));
+
     &.start {
       @include nb-ltr(transform, translate3d(-100%, 0, 0));
       @include nb-rtl(transform, translate3d(100%, 0, 0));
     }
 
-    &.expanded, &.expanded.start {
+    &.expanded,
+    &.expanded.start {
       transform: translate3d(0, 0, 0);
     }
 
@@ -31,7 +33,7 @@
 
     /deep/ .main-container {
       width: $sidebar-width;
-      background: nb-theme(color-bg);
+      background: #3d3780;
       transition: transform 0.3s ease;
       overflow: hidden;
       position: relative;
@@ -41,7 +43,7 @@
       }
 
       @include nb-for-theme(cosmic) {
-        background: nb-theme(layout-bg);
+        background: 19rem;
       }
     }
   }
@@ -55,15 +57,13 @@
     }
 
     /deep/ .main-container {
-      height:
-        calc(#{nb-theme(sidebar-height)} - #{nb-theme(header-height)} - #{nb-theme(sidebar-header-gap)}) !important;
-      @include nb-ltr(border-top-right-radius, nb-theme(radius));
-      @include nb-rtl(border-top-left-radius, nb-theme(radius));
+      height: calc(#{nb-theme(sidebar-height)} - #{nb-theme(header-height)} - #{nb-theme(sidebar-header-gap)}) !important;
+      @include nb-ltr(border-top-right-radius, 0.375rem);
+      @include nb-rtl(border-top-left-radius, 0.375rem);
 
       @include nb-for-theme(corporate) {
-        border: 1px solid nb-theme(separator);
-        height:
-          calc(#{nb-theme(sidebar-height)} - #{nb-theme(header-height)}) !important;
+        border: 1px solid #ebeef2;
+        height: calc(#{nb-theme(sidebar-height)} - #{nb-theme(header-height)}) !important;
       }
     }
 
@@ -91,19 +91,21 @@
       transition: padding 0.3s cubic-bezier(0.18, 0.89, 0.32, 1.48);
 
       @include nb-for-theme(corporate) {
-        border-radius: nb-theme(radius);
+        border-radius: 0.375rem;
       }
 
       i {
         font-size: 2rem;
         text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
       }
+
       span {
         @include nb-ltr(padding-left, 0.25rem);
         @include nb-rtl(padding-right, 0.25rem);
       }
 
-      i, span {
+      i,
+      span {
         vertical-align: middle;
       }
     }
@@ -114,11 +116,11 @@
     //      .menu-title {
     //        &::after {
     //          content: 'new';
-    //          color: nb-theme(color-white);
+    //          color: #ffffff;
     //          margin-left: 1rem;
     //          background: nb-theme(color-danger);
     //          padding: 0 0.5rem;
-    //          border-radius: nb-theme(radius);
+    //          border-radius: 0.375rem;
     //          font-size: nb-theme(font-size-sm);
     //        }
     //      }
