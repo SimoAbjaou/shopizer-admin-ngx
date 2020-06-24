@@ -349,20 +349,20 @@ export const MENU_ITEMS: MenuItem[] = [
     icon: 'fas fa-truck',
     children: [
       {
-        title: 'COMPONENTS.CONFIGURATION',
+        title: 'SHIPPING.EXPEDITION',
         key: 'COMPONENTS.CONFIGURATION',
         link: '/pages/shipping/config',
       },
       {
         title: 'COMPONENTS.METHODS',
         key: 'COMPONENTS.METHODS',
-        link: '/pages/content/promotion',
+        link: '/pages/shipping/config',
       },
       {
         title: 'COMPONENTS.ORIGIN',
         key: 'COMPONENTS.ORIGIN',
-        link: '/pages/shipping/config',
-      },
+        link: '/pages/shipping/origin',
+      }
       // {
       //   title: 'Options',
       //   key: 'sideNav.options',
