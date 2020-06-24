@@ -1,6 +1,14 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { stringify } from '@angular/compiler/src/util';
 import { CrudService } from '../../shared/services/crud.service';
+import { ToastrService } from 'ngx-toastr';
+import { TranslateService } from '@ngx-translate/core';
+import { StorageService } from '../../shared/services/storage.service';
+import { SharedService } from '../services/shared.service';
+import { Subscription } from 'rxjs';
+
+
+
 
 @Component({
   selector: 'app-transferlistbox',
@@ -21,6 +29,8 @@ export class TransferlistboxComponent implements OnInit {
   leftAreaMap: Map<string, any>;
   rightAreaMap: Map<string, any> = new Map<string, any>();
   shipToCountries: string[] = [];
+  store: string;
+  clickEventsubscription: Subscription;
 
   /**
    *alerts component params 
@@ -34,13 +44,17 @@ export class TransferlistboxComponent implements OnInit {
      *end of alerts component params 
      */
   showDelete: boolean = true;
-  constructor(private crudService: CrudService) {
+  constructor(private crudService: CrudService, private toastr: ToastrService, private translate: TranslateService, private storageService: StorageService, private sharedService: SharedService) {
+    this.clickEventsubscription = this.sharedService.getClickEvent().subscribe(() => {
+      this.saveShipToCountries();
+    })
   }
 
   /**
    * 
    */
   ngOnInit() {
+    this.store = this.storageService.getMerchant();
     this.fetchShipToCountries();
     //this.generateLocalData();
 
@@ -48,7 +62,7 @@ export class TransferlistboxComponent implements OnInit {
   }
   // Method to fetch selected shipToCountries
   fetchShipToCountries() {
-    this.crudService.get('/v1/private/expedition?store=DEFAULT')
+    this.crudService.get('/v1/private/expedition?store=' + this.store)
       .subscribe(data => {
         this.shipToCountries = data.shipToCountry;
         console.log(this.shipToCountries);
@@ -66,10 +80,8 @@ export class TransferlistboxComponent implements OnInit {
       "iternationalShipping": true,
       "shipToCountry": this.shipToCountries
     }
-    this.crudService.post('/v1/private/expedition?store=DEFAULT', payload).subscribe(res => {
-      if (res.status == 200) {
-        alert("Data Saved Successfully");
-      }
+    this.crudService.post('/v1/private/expedition?store=' + this.store, payload).subscribe(res => {
+      this.toastr.success(this.translate.instant('SHIPPING.SHIP_TO_COUNTRIES'));
     });
     this.shipToCountries = [];
   }

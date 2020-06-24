@@ -2,6 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { CrudService } from '../../shared/services/crud.service';
 import { ShippingOriginReq } from '../models/ShippingOriginReq';
+import { ToastrService } from 'ngx-toastr';
+import { StorageService } from './../../shared/services/storage.service';
+import { TranslateService } from '@ngx-translate/core';
+
+
+
 
 @Component({
   selector: 'ngx-origin',
@@ -21,11 +27,12 @@ export class OriginComponent implements OnInit {
   isSubmitted: boolean = false;
   countries = [];
   states = [];
+  store: string;
 
-  constructor(private crudService: CrudService, ) { }
+  constructor(private crudService: CrudService, private toastr: ToastrService, private translate: TranslateService, private storageService: StorageService) { }
 
   ngOnInit() {
-
+    this.store = this.storageService.getMerchant();
     this.getShippingOrigin();
 
   }
@@ -55,10 +62,8 @@ export class OriginComponent implements OnInit {
         this.shipOriginForm.value.countryName,
         this.shipOriginForm.value.stateName,
         this.shipOriginForm.value.postalCode);
-      this.crudService.post('/v1/private/origin?store=DEFAULT', this.shippingOriginReq).subscribe(res => {
-        if (res.status == 200) {
-          alert("Data Saved Successfully");
-        }
+      this.crudService.post('/v1/private/origin?store=' + this.store, this.shippingOriginReq).subscribe(res => {
+        this.toastr.success(this.translate.instant('SHIPPING.ORIGIN_UPDATE'));
       });
     }
 
@@ -84,7 +89,7 @@ export class OriginComponent implements OnInit {
   }
 
   getShippingOrigin() {
-    this.crudService.get('/v1/private/origin?store=DEFAULT')
+    this.crudService.get('/v1/private/origin?store=' + this.store)
       .subscribe(data => {
         this.shipOriginForm.get('address').setValue(data.address);
         this.shipOriginForm.get('cityName').setValue(data.city);

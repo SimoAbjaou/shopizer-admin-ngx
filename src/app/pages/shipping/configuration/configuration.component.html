@@ -3,7 +3,7 @@
     <nb-card-header class="main_header">
       <h1 class="page_title">{{ 'SHIPPING.EXPEDITION' | translate}}</h1>
       <div class="content_spacing">
-        <button type="button" nbButton status="success">Save</button>
+        <button type="button" nbButton status="success" (click)="saveShipToCountries()">Save</button>
       </div>
     </nb-card-header>
     <div class="custom_scroll" malihu-scrollbar [scrollbarOptions]="scrollbarOptions">

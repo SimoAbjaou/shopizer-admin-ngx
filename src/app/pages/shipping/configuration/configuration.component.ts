@@ -3,6 +3,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { LocalDataSource } from 'ng2-smart-table';
 import { CrudService } from '../../shared/services/crud.service';
 import { Router } from '@angular/router';
+import { SharedService } from '../services/shared.service';
 
 @Component({
   selector: 'shipping-config',
@@ -23,7 +24,7 @@ export class ConfigurationComponent {
   expedition: boolean = false;
   public scrollbarOptions = { axis: 'y', theme: 'minimal-dark' };
   constructor(
-    private crudService: CrudService,
+    private crudService: CrudService, private sharedService: SharedService
   ) {
     this.getCountry()
   }
@@ -65,6 +66,10 @@ export class ConfigurationComponent {
         this.loadingList = false;
 
       });
+  }
+
+  saveShipToCountries() {
+    this.sharedService.sendClickEvent();
   }
 
 }
