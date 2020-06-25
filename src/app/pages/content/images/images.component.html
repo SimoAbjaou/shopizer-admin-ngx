@@ -11,8 +11,16 @@
   <div class="row" [nbSpinner]="loadingList" nbSpinnerSize="large" nbSpinnerStatus="primary">
     <div class="col-md-12 col-sm-12 col-xs-12 col-lg-12">
       <ul class="gallery_listing_main">
-        <fm-file-manager [tree]="tree" [language]="appLanguage" [isPopup]="isPopup"></fm-file-manager>
+        <fm-file-manager [tree]="tree" [language]="appLanguage" [isPopup]="isPopup" [loadingOverlayTemplate]="loadingOverlayTemplate"></fm-file-manager>
 
+        <ng-template let-timeoutMessage #loadingOverlayTemplate>
+          <!-- <div class="backdrop">
+            <div class="error" *ngIf="timeoutMessage">{{ }}</div>
+          </div> -->
+          <!-- <div class="spinner">
+            <i class="fas fa-5x fa-spin fa-sync-alt"></i>
+          </div> -->
+        </ng-template>
         <!-- <ngx-dropzone class="custom_dropzone_full" (change)="handleUpload($event)">
           
         </ngx-dropzone>
