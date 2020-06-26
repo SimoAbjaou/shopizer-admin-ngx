@@ -78,6 +78,8 @@ export class OrderListComponent implements OnInit {
         }
 
         this.totalCount = orders.recordsTotal;
+      }, error => {
+        this.loadingList = false;
       });
     this.setSettings();
   }

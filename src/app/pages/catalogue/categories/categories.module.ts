@@ -29,7 +29,7 @@ import { TreeModule } from 'angular-tree-component';
     SharedModule,
     NgxSummernoteModule,
     NbDialogModule.forChild(),
-    TreeModule
+    TreeModule.forRoot()
   ],
   entryComponents: [ButtonRenderComponent],
 })
